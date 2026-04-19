@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const crypto = require('crypto');
 const db = require('../config/db');
 
 const login = (req, res) => {
@@ -25,9 +24,9 @@ const login = (req, res) => {
         }
 
         const user = results[0];
-        const hashedInput = crypto.createHash('sha256').update(contrasenia).digest('hex');
 
-        if (hashedInput !== user.contrasenia) {
+        // Compara directo con el hash guardado en BD
+        if (contrasenia !== user.contrasenia) {
             return res.status(401).json({ msg: 'Credenciales inválidas' });
         }
 
