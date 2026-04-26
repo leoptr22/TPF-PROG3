@@ -1,11 +1,6 @@
 const db = require('../config/db');
 
-
-// tuve que sacar los async/await porque no me funcionaba, no se porque, asi que lo deje con callbacks
-// en config/db.js deje la conexion a la base de datos con mysql2, que es lo que estoy usando, y funciona bien
-// con mysql2/promises no me funciono
-
-const listaTurnosMedicos = (req, res) => { 
+const listaTurnosMedicos = async (req, res) => { 
     try {
         const userId = req.user.id_usuario;
 
@@ -31,18 +26,18 @@ const listaTurnosMedicos = (req, res) => {
             ORDER BY tr.fecha_hora ASC
         `;
 
+       
+        const [rows] = await db.query(sql, [userId]);
         
-        db.query(sql, [userId], (err, rows) => {
-            if (err) {
-                console.error('ERROR SQL:', err.message);
-                return res.status(500).json({ message: 'Error en la consulta', details: err.message });
-            }
-            res.json(rows);
-        });
+       
+        return res.json(rows);
 
     } catch (error) {
-        console.error('ERROR DE SERVIDOR:', error.message);
-        res.status(500).json({ message: 'Error interno' });
+        console.error('ERROR DETALLADO:', error.message);
+        return res.status(500).json({ 
+            message: 'Error al obtener los turnos', 
+            details: error.message 
+        });
     }
 };
 

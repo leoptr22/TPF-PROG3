@@ -1,22 +1,12 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 
-
-
-
-// Conexión a MySQL
-const db = mysql.createConnection({
+const pool = mysql.createPool({
     host: process.env.DB_HOST || 'localhost',
     user: process.env.DB_USER || 'root',
     password: process.env.DB_PASS || '',
-    database: process.env.DB_NAME || 'tpf_prog_3'
+    database: process.env.DB_NAME || 'tpf_prog_3',
+    waitForConnections: true,
+    connectionLimit: 10
 });
 
-db.connect((err) => {
-    if (err) {
-        console.error('Error conectando a la base de datos:', err.message);
-        return;
-    }
-    console.log('Conectado a MySQL');
-});
-
-module.exports = db;
+module.exports = pool;

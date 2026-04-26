@@ -2,12 +2,27 @@ const express = require('express');
 const router = express.Router();
 const { verifyToken } = require('../middleware/auth');
 const { authorizeRoles } = require('../middleware/roles');
+const { listaTurnosPaciente } = require('../controllers/listaTurnosPaciente');
+
+const {  crearTurnoPaciente } = require('../controllers/crearTurnoPaciente');
+
+const { listaEspecialidadesPaciente } = require('../controllers/listaEspecialidadesPaciente');
 
 
 const controlador = (req, res) => {
     res.json({ msg: "Ruta de paciente funcionando" });
 };
 
-router.get('/turnos', verifyToken, authorizeRoles(2), controlador);
+
+// para listar los turnos del paciente
+router.get('/turnos', verifyToken, authorizeRoles(2), listaTurnosPaciente);
+
+// para listar las especialidades del paciente
+
+router.get('/especialidades', verifyToken, authorizeRoles(2), listaEspecialidadesPaciente);
+
+// para crear un turno
+
+router.post('/crear-turnos', verifyToken, authorizeRoles(2), crearTurnoPaciente);
 
 module.exports = router;

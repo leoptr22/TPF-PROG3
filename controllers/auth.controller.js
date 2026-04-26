@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const db = require('../config/db');
 
-const login = (req, res) => {
+const login = async (req, res) => {
     const { email, contrasenia } = req.body;
 
     if (!email || !contrasenia) {
@@ -14,10 +14,9 @@ const login = (req, res) => {
         WHERE email = ? AND activo = 1
     `;
 
-    db.query(sql, [email], (err, results) => {
-        if (err) {
-            return res.status(500).json({ msg: 'Error del servidor' });
-        }
+    try {
+        
+        const [results] = await db.query(sql, [email]);
 
         if (results.length === 0) {
             return res.status(401).json({ msg: 'Credenciales inválidas' });
@@ -25,7 +24,7 @@ const login = (req, res) => {
 
         const user = results[0];
 
-        // Compara directo con el hash guardado en BD
+        
         if (contrasenia !== user.contrasenia) {
             return res.status(401).json({ msg: 'Credenciales inválidas' });
         }
@@ -35,7 +34,7 @@ const login = (req, res) => {
                 id_usuario: user.id_usuario,
                 rol: user.rol
             },
-            process.env.JWT_SECRET,
+            process.env.JWT_SECRET || 'JWTPASS',
             { expiresIn: '2h' }
         );
 
@@ -48,7 +47,10 @@ const login = (req, res) => {
                 rol: user.rol
             }
         });
-    });
+    } catch (err) {
+        console.error("Error en login:", err.message);
+        return res.status(500).json({ msg: 'Error del servidor', details: err.message });
+    }
 };
 
 module.exports = { login };
