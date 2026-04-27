@@ -1,4 +1,4 @@
-const db = require('../config/db');
+const db = require('../../config/db');
 const listaEspecialidadesPaciente = async (req, res) => {
     try { 
         const userId = req.user.id_usuario;
