@@ -1,6 +1,6 @@
-const db = require('../../config/db');
+import db from '../../config/db.js';
 
-const getTurnosMedico = async (userId) => {
+export const getTurnosMedico = async (userId) => {
     const sql = `
         SELECT 
             tr.id_turno_reserva,
@@ -22,5 +22,3 @@ const getTurnosMedico = async (userId) => {
     const [rows] = await db.query(sql, [userId]);
     return rows;
 };
-
-module.exports = { getTurnosMedico };

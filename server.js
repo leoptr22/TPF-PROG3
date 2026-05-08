@@ -1,23 +1,28 @@
-const express = require('express');
-require('dotenv').config();
-const db = require('./config/db');
+import express from 'express';
+import dotenv from 'dotenv';
+import db from './config/db.js';
 
-const authRoutes = require('./routes/auth.routes');
-const adminRoutes = require('./routes/admin.js');
-const medicoRoutes = require('./routes/medico.js');
-const pacienteRoutes = require('./routes/paciente.js');
+import authRoutes from './routes/v1/auth.routes.js';
+import adminRoutes from './routes/v1/admin.js';
+import medicoRoutes from './routes/v1/medico.js';
+import pacienteRoutes from './routes/v1/paciente.js';
 
+//  variables de entorno
+dotenv.config();
 
 const app = express();
 
+//  parseo JSON
 app.use(express.json());
 
-app.use('/auth', authRoutes);
-app.use('/admin', adminRoutes);
-app.use('/medico', medicoRoutes);
-app.use('/paciente', pacienteRoutes);
+//  rutas
+app.use('/v1/auth', authRoutes);
+app.use('/v1/admin', adminRoutes);
+app.use('/v1/medico', medicoRoutes);
+app.use('/v1/paciente', pacienteRoutes);
 
 const PORT = process.env.PORT || 3001;
+
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });

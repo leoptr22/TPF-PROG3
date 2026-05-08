@@ -1,7 +1,7 @@
-const db = require('../../config/db');
+import db from '../../config/db.js';
 
-const getEspecialidadesPaciente = async (id_usuario) => {
-    const sql =  `
+export const getEspecialidadesPaciente = async (id_usuario) => {
+    const sql = `
         SELECT 
             e.id_especialidad,
             e.nombre AS nombre_especialidad
@@ -14,8 +14,6 @@ const getEspecialidadesPaciente = async (id_usuario) => {
         GROUP BY e.id_especialidad, e.nombre
     `;
 
-    const [rows] = await db.query(sql, [userId]);
+    const [rows] = await db.query(sql, [id_usuario]);
     return rows;
 };
-
-module.exports = { getEspecialidadesPaciente };

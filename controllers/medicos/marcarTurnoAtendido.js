@@ -1,6 +1,6 @@
-const { marcarTurnoAtendido: marcarTurnoAtendidoService } = require('../../services/medicos/marcarTurnoAtendido.service');
+import { marcarTurnoAtendido as marcarTurnoAtendidoService } from '../../services/medicos/marcarTurnoAtendido.service.js';
 
-const marcarTurnoAtendido = async (req, res) => {
+export const marcarTurnoAtendido = async (req, res) => {
     try {
         const { id_turno } = req.params;
 
@@ -20,5 +20,3 @@ const marcarTurnoAtendido = async (req, res) => {
         });
     }
 };
-
-module.exports = { marcarTurnoAtendido };

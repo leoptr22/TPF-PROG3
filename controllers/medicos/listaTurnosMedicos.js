@@ -1,11 +1,13 @@
-const { getTurnosMedico } = require('../../services/medicos/turno.service.js');
+import { getTurnosMedico } from '../../services/medicos/turno.service.js';
 
-const listaTurnosMedicos = async (req, res) => {
+export const listaTurnosMedicos = async (req, res) => {
     try {
         const userId = req.user.id_usuario;
 
         if (!userId) {
-            return res.status(400).json({ message: "ID de usuario no encontrado en el token" });
+            return res.status(400).json({ 
+                message: "ID de usuario no encontrado en el token" 
+            });
         }
 
         const turnos = await getTurnosMedico(userId);
@@ -19,5 +21,3 @@ const listaTurnosMedicos = async (req, res) => {
         });
     }
 };
-
-module.exports = { listaTurnosMedicos };

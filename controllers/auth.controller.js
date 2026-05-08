@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
-const db = require('../config/db');
+import jwt from 'jsonwebtoken';
+import db from '../config/db.js';
 
-const login = async (req, res) => {
+export const login = async (req, res) => {
     const { email, contrasenia } = req.body;
 
     if (!email || !contrasenia) {
@@ -15,7 +15,6 @@ const login = async (req, res) => {
     `;
 
     try {
-        
         const [results] = await db.query(sql, [email]);
 
         if (results.length === 0) {
@@ -24,7 +23,6 @@ const login = async (req, res) => {
 
         const user = results[0];
 
-        
         if (contrasenia !== user.contrasenia) {
             return res.status(401).json({ msg: 'Credenciales inválidas' });
         }
@@ -52,5 +50,3 @@ const login = async (req, res) => {
         return res.status(500).json({ msg: 'Error del servidor', details: err.message });
     }
 };
-
-module.exports = { login };

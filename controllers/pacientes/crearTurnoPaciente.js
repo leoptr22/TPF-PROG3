@@ -1,6 +1,6 @@
-const { traerPacienteByUserId, crearTurno } = require('../../services/pacientes/crearTurno.service.js');
+import { traerPacienteByUserId, crearTurno } from '../../services/pacientes/crearTurno.service.js';
 
-const crearTurnoPaciente = async (req, res) => {
+export const crearTurnoPaciente = async (req, res) => {
     try {
         const userId = req.user.id_usuario;
         const { id_medico, id_obra_social, fecha_hora, valor_total } = req.body;
@@ -25,5 +25,3 @@ const crearTurnoPaciente = async (req, res) => {
         return res.status(500).json({ message: "Error al procesar el turno" });
     }
 };
-
-module.exports = { crearTurnoPaciente };

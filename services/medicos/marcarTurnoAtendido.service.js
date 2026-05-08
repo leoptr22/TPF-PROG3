@@ -1,6 +1,6 @@
-const db = require('../../config/db');
+import db from '../../config/db.js';
 
-const marcarTurnoAtendido = async (idTurno) => {
+export const marcarTurnoAtendido = async (idTurno) => {
     const sql = `
         UPDATE turnos_reservas 
         SET atentido = 1 
@@ -10,5 +10,3 @@ const marcarTurnoAtendido = async (idTurno) => {
     const [result] = await db.query(sql, [idTurno]);
     return result;
 };
-
-module.exports = { marcarTurnoAtendido };

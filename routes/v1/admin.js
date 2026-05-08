@@ -1,13 +1,12 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const { verifyToken } = require('../middleware/auth');
-const { authorizeRoles } = require('../middleware/roles');
+import { verifyToken } from '../../middleware/auth.js';
+import { authorizeRoles } from '../../middleware/roles.js';
 
 const controlador = (req, res) => {
     res.json({ msg: "Ruta de admin funcionando" });
 };
 
-
 router.get('/administrador', verifyToken, authorizeRoles(3), controlador);
 
-module.exports = router;
+export default router;

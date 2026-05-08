@@ -1,15 +1,14 @@
-const {getEspecialidadesPaciente} = require('../../services/pacientes/listarEspecialidades.service.js');
+import { getEspecialidadesPaciente } from '../../services/pacientes/listarEspecialidades.service.js';
 
-
-const listaEspecialidadesPaciente = async (req, res) => {
+export const listaEspecialidadesPaciente = async (req, res) => {
     try {
         const userId = req.user.id_usuario;
 
-if (!userId) {
+        if (!userId) {
             return res.status(400).json({ message: 'ID de usuario no proporcionado' });
         }
 
-        const especialidades = await getpacienteEspecialidades(userId);
+        const especialidades = await getEspecialidadesPaciente(userId);
         return res.json(especialidades);
     } catch (error) {
         console.error('ERROR DETALLADO:', error.message);
@@ -19,5 +18,3 @@ if (!userId) {
         });
     }
 };
-
-module.exports = { listaEspecialidadesPaciente };

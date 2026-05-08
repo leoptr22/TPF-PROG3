@@ -1,6 +1,6 @@
-const db = require('../../config/db');
+import db from '../../config/db.js';
 
-const traerPacienteByUserId = async (userId) => {
+export const traerPacienteByUserId = async (userId) => {
     const [paciente] = await db.query(
         'SELECT id_paciente FROM pacientes WHERE id_usuario = ?',
         [userId]
@@ -8,7 +8,7 @@ const traerPacienteByUserId = async (userId) => {
     return paciente;
 };
 
-const crearTurno = async ({ id_medico, id_paciente, id_obra_social, fecha_hora, valor_total }) => {
+export const crearTurno = async ({ id_medico, id_paciente, id_obra_social, fecha_hora, valor_total }) => {
     const sql = `
         INSERT INTO turnos_reservas 
         (id_medico, id_paciente, id_obra_social, fecha_hora, valor_total, atentido, activo) 
@@ -25,5 +25,3 @@ const crearTurno = async ({ id_medico, id_paciente, id_obra_social, fecha_hora, 
 
     return resultado;
 };
-
-module.exports = { traerPacienteByUserId, crearTurno };
