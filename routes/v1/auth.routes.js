@@ -5,27 +5,32 @@ import { login } from '../../controllers/auth.controller.js';
 /**
  * @swagger
  * /v1/auth/login:
- * post:
- * summary: Iniciar sesión de usuario
- * tags: [Auth]
- * requestBody:
- * required: true
- * content:
- * application/json:
- * schema:
- * type: object
- * properties:
- * email:
- * type: string
- * example: "test@correo.com"
- * contrasenia:
- * type: string
- * example: "123456"
- * responses:
- * 200:
- * description: Login exitoso
- * 401:
- * description: Credenciales inválidas
+ *   post:
+ *     summary: Iniciar sesion
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - contrasenia
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: ferben@correo.com
+ *               contrasenia:
+ *                 type: string
+ *                 example: "f127f4e9e4248f77eaa446ea9bff721e3e79eedf114ba6e1cfc633853ef07b4c"
+ *     responses:
+ *       200:
+ *         description: Login exitoso
+ *       400:
+ *         description: Datos incompletos
+ *       401:
+ *         description: Credenciales invalidas
  */
 router.post('/login', login);
 

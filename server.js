@@ -32,6 +32,9 @@ app.use('/v1/paciente', pacienteRoutes);
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
+    console.log('----------------------------------------------------------------------');
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
     console.log(`Documentación disponible en http://localhost:${PORT}/api-docs`);
+    console.log('----------------------------------------------------------------------');
+
 });

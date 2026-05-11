@@ -7,10 +7,10 @@ import { listaTurnosMedicos } from '../../controllers/medicos/listaTurnosMedicos
 import { marcarTurnoAtendido } from '../../controllers/medicos/marcarTurnoAtendido.js';
 import db from '../../config/db.js';
 
-// Ruta para listar los turnos del médico
+// ruta para listar los turnos del medico
 router.get('/turnos', verifyToken, authorizeRoles(1), listaTurnosMedicos);
 
-// Ruta para marcar un turno como atendido
+// ruta para marcar un turno como atendido
 router.post("/atendido/:id_turno", verifyToken, authorizeRoles(1), marcarTurnoAtendido);
 
 export default router;

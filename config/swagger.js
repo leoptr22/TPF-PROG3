@@ -4,14 +4,14 @@ const options = {
     definition: {
         openapi: '3.0.0',
         info: {
-            title: 'API de Gestión de Turnos Médicos',
+            title: 'API de Gestion de Turnos Medicos',
             version: '1.0.0',
-            description: 'Documentación de la API para el Trabajo Práctico Final',
+            description: 'Documentacion de la API para el Trabajo Practico Final',
         },
         servers: [
             {
                 url: 'http://localhost:3001',
-                description: 'Servidor Local',
+                description: 'Servidor local',
             },
         ],
         components: {
@@ -24,8 +24,7 @@ const options = {
             },
         },
     },
-    // Rutas  para documentar
-    apis: ['./routes/v1/*.js', './controllers/**/*.js', './services/**/*.js', './middlewares/**/*.js'], 
+    apis: ['./routes/v1/*.js'],
 };
 
 const specs = swaggerJsdoc(options);
