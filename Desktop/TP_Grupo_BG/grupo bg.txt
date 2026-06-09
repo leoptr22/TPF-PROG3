@@ -1,4 +1,4 @@
-# integrantes: Grupo bg
+integrantes: Grupo bg
 * Leonel Piter
 * Cintia Rios
 * Adriana Quiroga
