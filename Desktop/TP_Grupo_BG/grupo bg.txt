@@ -1,6 +1,0 @@
-integrantes: Grupo bg
-* Leonel Piter
-* Cintia Rios
-* Adriana Quiroga
-* yamila Lorenzo
-* Miriam Canosa
