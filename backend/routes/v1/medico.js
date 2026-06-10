@@ -5,7 +5,6 @@ import { authorizeRoles } from '../../middleware/roles.js';
 
 import { listaTurnosMedicos } from '../../controllers/medicos/listaTurnosMedicos.js';
 import { marcarTurnoAtendido } from '../../controllers/medicos/marcarTurnoAtendido.js';
-import db from '../../config/db.js';
 
 // Ruta para listar los turnos del médico
 router.get('/turnos', verifyToken, authorizeRoles(1), listaTurnosMedicos);

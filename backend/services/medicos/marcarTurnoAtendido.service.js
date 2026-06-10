@@ -1,12 +1,5 @@
-import db from '../../config/db.js';
+import { marcarTurnoAtendido as actualizarTurnoAtendido } from '../../queries/medicos/marcarTurnoAtendido.queries.js';
 
-export const marcarTurnoAtendido = async (idTurno) => {
-    const sql = `
-        UPDATE turnos_reservas 
-        SET atentido = 1 
-        WHERE id_turno_reserva = ?
-    `;
-
-    const [result] = await db.query(sql, [idTurno]);
-    return result;
+export const marcarTurnoAtendido = async (idTurno, idUsuarioMedico) => {
+    return actualizarTurnoAtendido(idTurno, idUsuarioMedico);
 };

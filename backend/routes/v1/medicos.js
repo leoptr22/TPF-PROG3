@@ -7,9 +7,9 @@ import { listarMedicosEspecialidad } from '../../controllers/pacientes/listarMed
 
 const router = express.Router();
 
-router.get('/', verifyToken, authorizeRoles(2, 3), listarMedicosEspecialidad);
+router.get('/', verifyToken, authorizeRoles(1, 2, 3), listarMedicosEspecialidad);
 
-router.get('/especialidad/:id_especialidad', verifyToken, authorizeRoles(2, 3), [
+router.get('/especialidad/:id_especialidad', verifyToken, authorizeRoles(1, 2, 3), [
     param('id_especialidad', 'El id_especialidad debe ser numerico').isInt()
 ], validarCampos, listarMedicosEspecialidad);
 

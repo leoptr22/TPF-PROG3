@@ -2,7 +2,7 @@ import { getMedicosEspecialidad } from '../../services/pacientes/listarMedicosEs
 
 export const listarMedicosEspecialidad = async (req, res) => {
     try {
-        const { id_especialidad } = req.params;
+        const id_especialidad = req.params.id_especialidad || req.query.especialidad || null;
 
         const medicos = await getMedicosEspecialidad(id_especialidad);
 

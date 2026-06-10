@@ -3,7 +3,7 @@ import { traerPacienteByUserId, crearTurno } from '../../services/pacientes/crea
 export const crearTurnoPaciente = async (req, res) => {
     try {
         const userId = req.user.id_usuario;
-        const { id_medico, id_obra_social, fecha_hora, valor_total } = req.body;
+        const { id_medico, id_obra_social, fecha_hora } = req.body;
 
         const paciente = await traerPacienteByUserId(userId);
 
@@ -13,7 +13,7 @@ export const crearTurnoPaciente = async (req, res) => {
 
         const id_paciente = paciente[0].id_paciente;
 
-        const resultado = await crearTurno({ id_medico, id_paciente, id_obra_social, fecha_hora, valor_total });
+        const resultado = await crearTurno({ id_medico, id_paciente, id_obra_social, fecha_hora });
 
         return res.status(201).json({
             message: "Turno reservado con éxito",
@@ -22,6 +22,8 @@ export const crearTurnoPaciente = async (req, res) => {
 
     } catch (error) {
         console.error('Error en la reserva:', error.message);
-        return res.status(500).json({ message: "Error al procesar el turno" });
+        return res.status(error.statusCode || 500).json({
+            message: error.message || "Error al procesar el turno"
+        });
     }
 };

@@ -4,10 +4,10 @@ export const marcarTurnoAtendido = async (req, res) => {
     try {
         const { id_turno } = req.params;
 
-        const result = await marcarTurnoAtendidoService(id_turno);
+        const result = await marcarTurnoAtendidoService(id_turno, req.user.id_usuario);
 
         if (result.affectedRows === 0) {
-            return res.status(404).json({ message: "Turno no encontrado" });
+            return res.status(404).json({ message: "Turno no encontrado para el medico autenticado" });
         }
 
         return res.json({ message: "Turno marcado como atendido" });

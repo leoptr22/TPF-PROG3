@@ -1,52 +1,14 @@
-import jwt from 'jsonwebtoken';
-import db from '../config/db.js';
+import { loginRequestDTO } from '../DTO/auth.dto.js';
+import { loginUsuario } from '../services/auth.service.js';
 
 export const login = async (req, res) => {
-    const { email, contrasenia } = req.body;
-
-    if (!email || !contrasenia) {
-        return res.status(400).json({ msg: 'Email y contraseña son obligatorios' });
-    }
-
-    const sql = `
-        SELECT id_usuario, email, contrasenia, rol, activo
-        FROM usuarios
-        WHERE email = ? AND activo = 1
-    `;
-
     try {
-        const [results] = await db.query(sql, [email]);
-
-        if (results.length === 0) {
-            return res.status(401).json({ msg: 'Credenciales inválidas' });
-        }
-
-        const user = results[0];
-
-        if (contrasenia !== user.contrasenia) {
-            return res.status(401).json({ msg: 'Credenciales inválidas' });
-        }
-
-        const token = jwt.sign(
-            {
-                id_usuario: user.id_usuario,
-                rol: user.rol
-            },
-            process.env.JWT_SECRET || 'JWTPASS',
-            { expiresIn: '2h' }
-        );
-
-        return res.json({
-            msg: 'Login exitoso',
-            token,
-            user: {
-                id_usuario: user.id_usuario,
-                email: user.email,
-                rol: user.rol
-            }
+        const respuesta = await loginUsuario(loginRequestDTO(req.body));
+        return res.json(respuesta);
+    } catch (error) {
+        console.error('Error en login:', error.message);
+        return res.status(error.statusCode || 500).json({
+            msg: error.message || 'Error del servidor'
         });
-    } catch (err) {
-        console.error("Error en login:", err.message);
-        return res.status(500).json({ msg: 'Error del servidor', details: err.message });
     }
 };
