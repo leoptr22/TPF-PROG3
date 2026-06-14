@@ -56,7 +56,17 @@ Swagger:
 
 ```text
 http://localhost:3001/api-docs
+
 ```
+
+## Aclaracion sobre la base de datos
+
+en el archivo `Dump.sql` original, la columna que indica si un turno fue atendido aparece escrita como atentido.
+
+El proyecto utiliza el nombre corregido `atendido`.
+
+
+
 
 ## Login
 

@@ -5,8 +5,6 @@ import morgan from 'morgan';
 
 import authRoutes from './routes/v1/auth.routes.js';
 import adminRoutes from './routes/v1/admin.js';
-import medicoRoutes from './routes/v1/medico.js';
-import pacienteRoutes from './routes/v1/paciente.js';
 import turnosRoutes from './routes/v1/turnos.js';
 import especialidadesRoutes from './routes/v1/especialidades.js';
 import medicosRoutes from './routes/v1/medicos.js';
@@ -24,8 +22,6 @@ app.use(express.json());
 
 app.use('/v1/auth', authRoutes);
 app.use('/v1/admin', adminRoutes);
-app.use('/v1/medico', medicoRoutes);
-app.use('/v1/paciente', pacienteRoutes);
 app.use('/v1/turnos', turnosRoutes);
 app.use('/v1/especialidades', especialidadesRoutes);
 app.use('/v1/medicos', medicosRoutes);

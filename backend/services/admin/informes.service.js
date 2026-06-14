@@ -157,7 +157,7 @@ export const generarInformeTurnosPDF = async ({
         datos.turnos.forEach((turno) => {
 
             const atendido =
-                Number(turno.atendido ?? turno.atentido) === 1
+                Number(turno.atendido) === 1
                     ? 'Sí'
                     : 'No';
 

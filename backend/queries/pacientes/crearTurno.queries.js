@@ -53,7 +53,7 @@ export const crearTurno = async ({ id_medico, id_paciente, id_obra_social, fecha
     const executor = getExecutor(connection);
     const sql = `
         INSERT INTO turnos_reservas
-        (id_medico, id_paciente, id_obra_social, fecha_hora, valor_total, atentido, activo)
+        (id_medico, id_paciente, id_obra_social, fecha_hora, valor_total, atendido, activo)
         VALUES (?, ?, ?, ?, ?, 0, 1)
     `;
 

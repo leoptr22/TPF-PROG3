@@ -9,7 +9,7 @@ export const obtenerDatosInformeTurnos = async ({ fecha_desde = null, fecha_hast
             COUNT(DISTINCT tr.id_paciente) AS cantidad_pacientes,
             COUNT(DISTINCT tr.id_medico) AS cantidad_medicos,
             COUNT(DISTINCT tr.id_obra_social) AS cantidad_obras_sociales,
-            SUM(CASE WHEN tr.atentido = 1 THEN 1 ELSE 0 END) AS cantidad_atendidos,
+            SUM(CASE WHEN tr.atendido = 1 THEN 1 ELSE 0 END) AS cantidad_atendidos,
             COALESCE(SUM(tr.valor_total), 0) AS total_facturado
          FROM turnos_reservas tr
          WHERE tr.activo = 1
@@ -44,7 +44,7 @@ export const obtenerDatosInformeTurnos = async ({ fecha_desde = null, fecha_hast
             os.nombre AS obra_social,
             e.nombre AS especialidad,
             tr.valor_total,
-            tr.atentido
+            tr.atendido
          FROM turnos_reservas tr
          INNER JOIN pacientes p ON tr.id_paciente = p.id_paciente
          INNER JOIN usuarios up ON p.id_usuario = up.id_usuario

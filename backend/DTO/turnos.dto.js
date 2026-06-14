@@ -26,7 +26,7 @@ export const turnoResponseDTO = (turno) => ({
     especialidad: turno.especialidad,
     obra_social: turno.obra_social || turno.obra_social_nombre,
     valor_total: turno.valor_total,
-    atentido: turno.atentido
+    atendido: turno.atendido
 });
 
 export const turnosResponseDTO = (turnos) => turnos.map(turnoResponseDTO);

@@ -470,7 +470,7 @@
  *     tags: [Administrador]
  *     security:
  *       - bearerAuth: []
- *     description: Ejecuta el stored procedure sp_estadisticas_atenciones.
+ *     description: Devuelve un resumen de atenciones y totales por obra social.
  *     parameters:
  *       - in: query
  *         name: fecha_desde

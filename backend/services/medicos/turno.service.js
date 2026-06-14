@@ -9,7 +9,7 @@ export const getTurnosMedico = async (userId) => {
             u_pac.nombres AS paciente_nombre,
             os.nombre AS obra_social_nombre,
             tr.valor_total,
-            tr.atentido
+            tr.atendido
         FROM turnos_reservas AS tr
         INNER JOIN pacientes AS p ON tr.id_paciente = p.id_paciente
         INNER JOIN usuarios AS u_pac ON p.id_usuario = u_pac.id_usuario
