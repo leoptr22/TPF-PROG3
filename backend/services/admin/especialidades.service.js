@@ -1,6 +1,7 @@
 import {
     crearEspecialidad,
     editarEspecialidad,
+    eliminarEspecialidad,
     listarEspecialidades
 } from '../../queries/admin/especialidades.queries.js';
 
@@ -26,6 +27,15 @@ export const editarEspecialidadAdmin = async (idEspecialidad, { nombre }) => {
     }
 
     const result = await editarEspecialidad(idEspecialidad, { nombre });
+    if (result.affectedRows === 0) {
+        throw crearError('Especialidad no encontrada', 404);
+    }
+
+    return result;
+};
+
+export const eliminarEspecialidadAdmin = async (idEspecialidad) => {
+    const result = await eliminarEspecialidad(idEspecialidad);
     if (result.affectedRows === 0) {
         throw crearError('Especialidad no encontrada', 404);
     }

@@ -141,10 +141,12 @@ POST /v1/admin/uploads
 
 POST /v1/especialidades
 PUT /v1/especialidades/1
+DELETE /v1/especialidades/1
 
 GET /v1/obras-sociales
 POST /v1/obras-sociales
 PUT /v1/obras-sociales/1
+DELETE /v1/obras-sociales/1
 
 PUT /v1/admin/medicos/1/especialidad
 POST /v1/admin/medicos/1/obras-sociales

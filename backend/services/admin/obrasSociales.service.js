@@ -1,6 +1,7 @@
 import {
     crearObraSocial,
     editarObraSocial,
+    eliminarObraSocial,
     listarObrasSociales
 } from '../../queries/admin/obrasSociales.queries.js';
 
@@ -26,6 +27,15 @@ export const editarObraSocialAdmin = async (idObraSocial, { nombre, descripcion 
     }
 
     const result = await editarObraSocial(idObraSocial, { nombre, descripcion, porcentaje_descuento, es_particular });
+    if (result.affectedRows === 0) {
+        throw crearError('Obra social no encontrada', 404);
+    }
+
+    return result;
+};
+
+export const eliminarObraSocialAdmin = async (idObraSocial) => {
+    const result = await eliminarObraSocial(idObraSocial);
     if (result.affectedRows === 0) {
         throw crearError('Obra social no encontrada', 404);
     }

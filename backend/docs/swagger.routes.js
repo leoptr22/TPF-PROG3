@@ -252,6 +252,22 @@
  *         description: Especialidad actualizada.
  *       404:
  *         description: Especialidad no encontrada.
+ *   delete:
+ *     summary: Eliminar logicamente una especialidad
+ *     tags: [Especialidades]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id_especialidad
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Especialidad eliminada.
+ *       404:
+ *         description: Especialidad no encontrada.
  */
 
 /**
@@ -347,6 +363,22 @@
  *     responses:
  *       200:
  *         description: Obra social actualizada.
+ *       404:
+ *         description: Obra social no encontrada.
+ *   delete:
+ *     summary: Eliminar logicamente una obra social
+ *     tags: [Obras Sociales]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id_obra_social
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Obra social eliminada.
  *       404:
  *         description: Obra social no encontrada.
  */
@@ -470,7 +502,7 @@
  *     tags: [Administrador]
  *     security:
  *       - bearerAuth: []
- *     description: Devuelve un resumen de atenciones y totales por obra social.
+ *     description: Ejecuta el procedimiento almacenado sp_estadisticas_atenciones.
  *     parameters:
  *       - in: query
  *         name: fecha_desde

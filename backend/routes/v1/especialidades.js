@@ -6,7 +6,8 @@ import { validarCampos } from '../../middleware/validarCampos.js';
 import { listaEspecialidadesPaciente } from '../../controllers/pacientes/listaEspecialidadesPaciente.js';
 import {
     crearEspecialidad,
-    editarEspecialidad
+    editarEspecialidad,
+    eliminarEspecialidad
 } from '../../controllers/admin/especialidades.controller.js';
 
 const router = express.Router();
@@ -21,5 +22,9 @@ router.put('/:id_especialidad', verifyToken, authorizeRoles(3), [
     param('id_especialidad', 'El id_especialidad debe ser numerico').isInt(),
     check('nombre', 'El nombre es obligatorio').not().isEmpty()
 ], validarCampos, editarEspecialidad);
+
+router.delete('/:id_especialidad', verifyToken, authorizeRoles(3), [
+    param('id_especialidad', 'El id_especialidad debe ser numerico').isInt()
+], validarCampos, eliminarEspecialidad);
 
 export default router;

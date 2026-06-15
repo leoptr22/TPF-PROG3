@@ -28,3 +28,13 @@ export const editarObraSocial = async (idObraSocial, { nombre, descripcion = '',
     );
     return result;
 };
+
+export const eliminarObraSocial = async (idObraSocial) => {
+    const [result] = await db.query(
+        `UPDATE obras_sociales
+         SET activo = 0
+         WHERE id_obra_social = ? AND activo = 1`,
+        [idObraSocial]
+    );
+    return result;
+};

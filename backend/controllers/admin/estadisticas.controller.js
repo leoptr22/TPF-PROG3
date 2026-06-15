@@ -6,6 +6,9 @@ export const obtenerEstadisticasAtenciones = async (req, res) => {
         const estadisticas = await obtenerEstadisticasAtencionesAdmin(estadisticasQueryDTO(req.query));
         return res.json(estadisticas);
     } catch (error) {
-        return res.status(500).json({ message: 'Error al obtener estadisticas', details: error.message });
+        return res.status(500).json({
+            message: 'Error al obtener estadisticas mediante el procedimiento almacenado',
+            details: error.message
+        });
     }
 };

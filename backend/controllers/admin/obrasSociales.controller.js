@@ -5,6 +5,7 @@ import {
 import {
     crearObraSocialAdmin,
     editarObraSocialAdmin,
+    eliminarObraSocialAdmin,
     listarObrasSocialesAdmin
 } from '../../services/admin/obrasSociales.service.js';
 
@@ -30,6 +31,15 @@ export const editarObraSocial = async (req, res) => {
     try {
         await editarObraSocialAdmin(req.params.id_obra_social, obraSocialRequestDTO(req.body));
         return res.json({ message: 'Obra social actualizada' });
+    } catch (error) {
+        return res.status(error.statusCode || 500).json({ message: error.message });
+    }
+};
+
+export const eliminarObraSocial = async (req, res) => {
+    try {
+        await eliminarObraSocialAdmin(req.params.id_obra_social);
+        return res.json({ message: 'Obra social eliminada' });
     } catch (error) {
         return res.status(error.statusCode || 500).json({ message: error.message });
     }

@@ -28,3 +28,13 @@ export const editarEspecialidad = async (idEspecialidad, { nombre }) => {
     );
     return result;
 };
+
+export const eliminarEspecialidad = async (idEspecialidad) => {
+    const [result] = await db.query(
+        `UPDATE especialidades
+         SET activo = 0
+         WHERE id_especialidad = ? AND activo = 1`,
+        [idEspecialidad]
+    );
+    return result;
+};

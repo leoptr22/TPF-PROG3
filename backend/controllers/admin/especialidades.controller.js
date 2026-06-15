@@ -5,6 +5,7 @@ import {
 import {
     crearEspecialidadAdmin,
     editarEspecialidadAdmin,
+    eliminarEspecialidadAdmin,
     listarEspecialidadesAdmin
 } from '../../services/admin/especialidades.service.js';
 
@@ -30,6 +31,15 @@ export const editarEspecialidad = async (req, res) => {
     try {
         await editarEspecialidadAdmin(req.params.id_especialidad, especialidadRequestDTO(req.body));
         return res.json({ message: 'Especialidad actualizada' });
+    } catch (error) {
+        return res.status(error.statusCode || 500).json({ message: error.message });
+    }
+};
+
+export const eliminarEspecialidad = async (req, res) => {
+    try {
+        await eliminarEspecialidadAdmin(req.params.id_especialidad);
+        return res.json({ message: 'Especialidad eliminada' });
     } catch (error) {
         return res.status(error.statusCode || 500).json({ message: error.message });
     }
