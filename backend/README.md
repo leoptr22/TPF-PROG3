@@ -16,15 +16,15 @@ Integrantes:
 
 Instalar las dependencias:
 
-```bash
+
 npm install
-```
+
 
 Configurar la conexion a la base de datos en `backend/.env`.
 
 Ejemplo:
 
-```env
+```
 PORT=3001
 DB_HOST=localhost
 DB_PORT=3306
@@ -36,28 +36,27 @@ JWT_SECRET=clave_secreta
 
 Para iniciar el servidor:
 
-```bash
+
 npm start
-```
+
 
 Para iniciar con nodemon:
 
-```bash
 npm run dev
-```
+
 
 Servidor:
 
-```text
+
 http://localhost:3001
-```
+
 
 Swagger:
 
-```text
+
 http://localhost:3001/api-docs
 
-```
+
 
 ## Aclaracion sobre la base de datos
 
@@ -70,22 +69,22 @@ El proyecto utiliza el nombre corregido `atendido`.
 
 ## Login
 
-```http
-POST /v1/auth/login
-```
 
-```json
+POST /v1/auth/login
+
+
+
 {
   "email": "ejem@correo.com",
   "contrasenia": "buscar la q corresponde en bd"
 }
-```
+
 
 Para utilizar las rutas protegidas se debe enviar el token:
 
-```text
+
 Authorization: Bearer token
-```
+
 
 Roles:
 
@@ -95,44 +94,43 @@ Roles:
 
 ## Paciente
 
-```http
+
 GET /v1/turnos/paciente
 GET /v1/especialidades
 GET /v1/medicos
 GET /v1/medicos/especialidad/1
 POST /v1/turnos
-```
+
 
 Ejemplo para crear un turno:
 
-```json
+
 {
   "id_medico": 1,
   "id_obra_social": 1,
   "fecha_hora": "2027-01-15T10:30:00"
 }
-```
+
 
 ## Medico
 
-```http
 GET /v1/turnos/medico
 GET /v1/medicos
 PATCH /v1/turnos/1/atendido
 PATCH /v1/turnos/1/observaciones
-```
+
 
 Ejemplo de observacion:
 
-```json
+
 {
   "observaciones": "paciente atendido. Se indica reposo."
 }
-```
+
 
 ## Administrador
 
-```http
+
 GET /v1/admin/administrador
 POST /v1/admin/turnos
 GET /v1/admin/estadisticas/atenciones
